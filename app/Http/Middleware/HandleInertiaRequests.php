@@ -36,10 +36,14 @@ class HandleInertiaRequests extends Middleware
 
             'locale' => app()->getLocale(),
 
-            // The whole message catalogue for the active locale. It is ~4 KB
-            // and every page reads from it, so splitting it per page would add
-            // a request without saving bytes worth measuring.
-            'translations' => fn () => self::messages(app()->getLocale()),
+            // The message catalogue for the active locale, minus the half this
+            // request cannot use: the public site never reads `admin.*` and the
+            // CMS never reads the marketing copy under `content`. Sending both
+            // would put ~26 KB of JSON in every page's HTML.
+            'translations' => fn () => self::messages(
+                app()->getLocale(),
+                $request->is('admin', 'admin/*'),
+            ),
 
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),
@@ -57,22 +61,36 @@ class HandleInertiaRequests extends Middleware
      *
      * @return array<string, mixed>
      */
-    private static function messages(string $locale): array
+    private static function messages(string $locale, bool $admin): array
     {
         static $cache = [];
 
-        if (isset($cache[$locale])) {
-            return $cache[$locale];
+        $key = $locale.($admin ? ':admin' : ':public');
+
+        if (isset($cache[$key])) {
+            return $cache[$key];
         }
 
         $path = lang_path("{$locale}.json");
 
         if (! is_file($path)) {
-            return $cache[$locale] = [];
+            return $cache[$key] = [];
         }
 
         $decoded = json_decode((string) file_get_contents($path), true);
 
-        return $cache[$locale] = is_array($decoded) ? $decoded : [];
+        if (! is_array($decoded)) {
+            return $cache[$key] = [];
+        }
+
+        if ($admin) {
+            // The panel still needs the shared `nav`/`common` namespaces, but
+            // not the marketing copy the public pages render.
+            unset($decoded['content']);
+        } else {
+            unset($decoded['admin']);
+        }
+
+        return $cache[$key] = $decoded;
     }
 }

@@ -1,4 +1,5 @@
 import { usePage } from '@inertiajs/react';
+import { usePathname, useRouter } from '@/lib/navigation';
 
 /**
  * Replacement for next-intl, sized to what this app actually uses: namespaced
@@ -58,4 +59,34 @@ export function useTranslations(namespace?: string) {
 /** Whole sub-tree, for the places that render a list straight from the catalogue. */
 export function useMessages<T = unknown>(path: string): T | undefined {
     return lookup(usePage<SharedProps>().props.translations, path) as T | undefined;
+}
+
+/* ------------------------------------------------------------------ *
+ * Bilingual literals
+ *
+ * The landing organisms hold their copy inline as `bi('teks', 'text')`
+ * pairs rather than catalogue keys. Keeping that shape means those
+ * components port across unchanged; `t()` below is the same function they
+ * already call.
+ * ------------------------------------------------------------------ */
+
+export type Lang = 'id' | 'en';
+export type Bi = { id: string; en: string };
+
+export const bi = (id: string, en: string): Bi => ({ id, en });
+
+export function useI18n() {
+    const lang = useLocale() as Lang;
+    const { replace } = useRouter();
+    const path = usePathname();
+
+    return {
+        lang,
+        // Switching language is a server visit now, not a client-side locale
+        // swap, so the new page arrives already rendered in the other language.
+        setLang: (next: Lang) => next !== lang && replace(path, { locale: next }),
+        // Indonesian is the source language and always present, so it is also
+        // the fallback for an unfinished translation.
+        t: (value: Bi) => value[lang] ?? value.id,
+    };
 }

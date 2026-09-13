@@ -13,11 +13,14 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Site\ContactController;
+use App\Http\Controllers\Site\NewsController;
+use App\Http\Controllers\Site\PageController;
+use App\Http\Controllers\Site\SitemapController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,11 +133,26 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::redirect('/', '/'.SetLocale::DEFAULT);
 
+Route::get('sitemap.xml', [SitemapController::class, 'sitemap'])->name('sitemap');
+Route::get('robots.txt', [SitemapController::class, 'robots'])->name('robots');
+
 Route::prefix('{locale}')
     ->whereIn('locale', SetLocale::SUPPORTED)
     ->group(function () {
-        Route::get('/', fn () => Inertia::render('Welcome', [
-            'laravel' => app()->version(),
-            'php' => PHP_VERSION,
-        ]))->name('home');
+        Route::get('/', [PageController::class, 'home'])->name('home');
+        Route::get('about', [PageController::class, 'about'])->name('about');
+        Route::get('structure', [PageController::class, 'structure'])->name('structure');
+        Route::get('focus-areas', [PageController::class, 'focusAreas'])->name('focus-areas');
+        Route::get('programs', [PageController::class, 'programs'])->name('programs');
+        Route::get('gallery', [PageController::class, 'gallery'])->name('gallery');
+
+        Route::get('news', [NewsController::class, 'index'])->name('news');
+        Route::get('news/{slug}', [NewsController::class, 'show'])->name('news.show');
+
+        Route::get('contact', [ContactController::class, 'show'])->name('contact');
+        // The only unauthenticated write on the site, so the only one that
+        // needs its own limit. Five per hour, keyed by address.
+        Route::post('contact', [ContactController::class, 'store'])
+            ->middleware('throttle:5,60')
+            ->name('contact.store');
     });

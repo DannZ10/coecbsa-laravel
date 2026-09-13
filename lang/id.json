@@ -20,7 +20,8 @@
     "menu": "Menu",
     "openMenu": "Buka menu navigasi",
     "closeMenu": "Tutup menu navigasi",
-    "primaryLabel": "Navigasi utama"
+    "primaryLabel": "Navigasi utama",
+    "label": "Navigasi situs"
   },
   "actions": {
     "readMore": "Selengkapnya",
@@ -77,7 +78,8 @@
     "backToList": "Kembali ke daftar berita",
     "publishedOn": "Dipublikasikan",
     "writtenBy": "Oleh",
-    "tags": "Tag"
+    "tags": "Tag",
+    "related": "Berita lainnya"
   },
   "gallery": {
     "eyebrow": "Dokumentasi & Media",
@@ -94,7 +96,9 @@
     "exploreCta": "Lihat Program Unggulan",
     "previous": "Halaman sebelumnya",
     "next": "Halaman berikutnya",
-    "page": "Halaman"
+    "page": "Halaman",
+    "empty": "Belum ada foto",
+    "emptyBody": "Galeri akan terisi seiring kegiatan berjalan."
   },
   "common": {
     "loading": "Memuat…",
@@ -619,6 +623,133 @@
       "ongoing": "Berjalan",
       "planned": "Direncanakan",
       "completed": "Selesai"
+    }
+  },
+  "content": {
+    "home": {
+      "hero": {
+        "eyebrow": "Universitas Brawijaya · FTAB",
+        "headline": "Memberdayakan Komunitas melalui Agroindustri Berkelanjutan",
+        "subheadline": "CoE CBSA adalah platform kolaboratif yang memajukan agroindustri berkelanjutan melalui riset, inovasi, pemberdayaan masyarakat, dan kemitraan strategis.",
+        "primaryCta": "Jelajahi program",
+        "secondaryCta": "Tentang kami"
+      },
+      "about": {
+        "eyebrow": "Tentang kami",
+        "title": "Riset, teknologi, dan komunitas dalam satu ekosistem",
+        "body": "CoE CBSA mengintegrasikan riset, teknologi, pemberdayaan masyarakat, dan kolaborasi multipihak untuk menghasilkan solusi agroindustri yang inklusif, inovatif, berdaya saing, dan ramah lingkungan.",
+        "pillars": [
+          {
+            "title": "Inklusif",
+            "description": "Melibatkan seluruh pemangku kepentingan lintas sektor."
+          },
+          {
+            "title": "Inovatif",
+            "description": "Menghadirkan solusi berbasis riset dan teknologi terbaru."
+          },
+          {
+            "title": "Berdaya Saing",
+            "description": "Menguatkan nilai tambah dan daya saing produk komunitas."
+          },
+          {
+            "title": "Ramah Lingkungan",
+            "description": "Mengutamakan keberlanjutan dan pelestarian lingkungan."
+          }
+        ],
+        "approaches": [
+          "Riset",
+          "Teknologi",
+          "Pemberdayaan Masyarakat",
+          "Kolaborasi Multipihak"
+        ]
+      },
+      "sections": {
+        "focusEyebrow": "Fokus keilmuan",
+        "focusTitle": "Lima area fokus kami",
+        "focusDescription": "Diturunkan dari kegiatan nyata CoE CBSA di lapangan bersama komunitas dan mitra.",
+        "programsEyebrow": "Program & layanan",
+        "programsTitle": "Program unggulan yang berdampak",
+        "programsDescription": "Dari ekosistem ekonomi sirkular maggot BSF hingga penguatan IKM berbasis riset.",
+        "impactEyebrow": "Proyek & dampak",
+        "impactTitle": "Dampak yang terukur",
+        "impactDescription": "Sebagian angka dampak resmi masih dikonsolidasikan bersama tim CoE CBSA.",
+        "newsEyebrow": "Berita",
+        "newsTitle": "Kabar terbaru",
+        "newsDescription": "Kegiatan, kolaborasi, dan capaian terkini CoE CBSA.",
+        "partnersEyebrow": "Mitra",
+        "partnersTitle": "Berkolaborasi dengan berbagai pemangku kepentingan",
+        "ctaTitle": "Ingin berkolaborasi bersama CoE CBSA?",
+        "ctaBody": "Kami terbuka untuk kemitraan riset, hilirisasi teknologi, dan program pemberdayaan masyarakat."
+      }
+    },
+    "focusAreas": [
+      {
+        "slug": "ekonomi-sirkular",
+        "title": "Ekonomi Sirkular",
+        "description": "Valorisasi limbah organik menjadi produk bernilai melalui pendekatan ekonomi sirkular.",
+        "icon": "recycle"
+      },
+      {
+        "slug": "pengelolaan-limbah-organik",
+        "title": "Pengelolaan Limbah Organik",
+        "description": "Budidaya maggot BSF (Black Soldier Fly) dan pengolahan limbah ternak menjadi media tanam.",
+        "icon": "sprout"
+      },
+      {
+        "slug": "pemberdayaan-masyarakat",
+        "title": "Pemberdayaan Masyarakat & Penguatan IKM",
+        "description": "Hilirisasi teknologi ke komunitas champion dan penguatan industri kecil menengah.",
+        "icon": "users"
+      },
+      {
+        "slug": "kolaborasi-multipihak",
+        "title": "Kolaborasi Multipihak",
+        "description": "Menghubungkan akademisi, pemerintah, industri, komunitas, dan perbankan.",
+        "icon": "handshake"
+      },
+      {
+        "slug": "pertanian-berkelanjutan-sdgs",
+        "title": "Pertanian Berkelanjutan & SDGs",
+        "description": "Kontribusi pada SDG 12 (Konsumsi & Produksi Bertanggung Jawab), 13 (Aksi Iklim), dan 17 (Kemitraan).",
+        "icon": "leaf"
+      }
+    ],
+    "people": [
+      {
+        "division": "Pimpinan",
+        "members": [
+          {
+            "slug": "dodyk-pranowo",
+            "name": "Dr. Dodyk Pranowo, STP, M.Si",
+            "title": "Dr., STP, M.Si",
+            "role": "Ketua CoE CBSA"
+          },
+          {
+            "slug": "hendri-cahya-aprilianto",
+            "name": "Hendri Cahya Aprilianto, S.TP., M.T., Ph.D",
+            "title": "S.TP., M.T., Ph.D",
+            "role": "Sekretaris"
+          }
+        ]
+      },
+      {
+        "division": "Divisi Riset dan Inovasi Agroindustri",
+        "members": [
+          {
+            "slug": "nur-lailatul-rahmah",
+            "name": "Nur Lailatul Rahmah, S.Si, M.Si., Ph.D",
+            "title": "S.Si, M.Si., Ph.D",
+            "role": "Ketua Divisi Riset dan Inovasi Agroindustri",
+            "division": "Divisi Riset dan Inovasi Agroindustri"
+          }
+        ]
+      }
+    ],
+    "contact": {
+      "address": "Gedung FTAB A Lantai 2, Universitas Brawijaya, Malang, Jawa Timur, Indonesia",
+      "phone": "+62 857-0197-7439",
+      "phoneHref": "tel:+6285701977439",
+      "mapEmbedUrl": "https://www.google.com/maps?q=Fakultas%20Teknologi%20Pertanian%20Universitas%20Brawijaya&output=embed"
     }
   }
 }
