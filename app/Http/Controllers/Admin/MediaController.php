@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MediaUploadRequest;
 use App\Models\Media;
 use App\Services\MediaService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -43,9 +44,16 @@ class MediaController extends Controller
         ]);
     }
 
-    public function store(MediaUploadRequest $request): RedirectResponse
+    public function store(MediaUploadRequest $request): RedirectResponse|JsonResponse
     {
-        $this->media->store($request->file('file'), $request->user());
+        $media = $this->media->store($request->file('file'), $request->user());
+
+        // The rich-text editor uploads with Accept: application/json because it
+        // needs the URL back in order to insert the image; every other caller
+        // is an Inertia visit that just wants the library to refresh.
+        if ($request->wantsJson()) {
+            return response()->json(['url' => $media->url, 'id' => $media->id]);
+        }
 
         return back()->with('success', __('flash.created'));
     }

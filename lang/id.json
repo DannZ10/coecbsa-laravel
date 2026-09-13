@@ -159,9 +159,9 @@
       "editor": "Editor"
     },
     "status": {
-      "PUBLISHED": "Terbit",
-      "DRAFT": "Draf",
-      "SCHEDULED": "Terjadwal"
+      "draft": "Draf",
+      "published": "Terbit",
+      "scheduled": "Terjadwal"
     },
     "common": {
       "save": "Simpan",
@@ -245,7 +245,11 @@
       "statusFailed": "Gagal mengubah status berita.",
       "deleteFailed": "Gagal menghapus berita.",
       "deleteTitle": "Hapus berita ini?",
-      "deleteBody": "akan dihapus permanen dan tidak dapat dikembalikan."
+      "deleteBody": "akan dihapus permanen dan tidak dapat dikembalikan.",
+      "create": "Tulis berita",
+      "editTitle": "Edit berita",
+      "editSubtitle": "Isi versi Indonesia terlebih dahulu; versi Inggris opsional.",
+      "backToList": "Kembali ke daftar"
     },
     "editor": {
       "newTitle": "Tulis berita",
@@ -278,7 +282,18 @@
       "saveFailed": "Gagal menyimpan berita. Coba lagi.",
       "loadFailed": "Gagal memuat berita",
       "notFound": "Berita tidak ditemukan",
-      "notFoundBody": "Berita ini mungkin sudah dihapus."
+      "notFoundBody": "Berita ini mungkin sudah dihapus.",
+      "languageTabs": "Bahasa naskah",
+      "indonesian": "Indonesia",
+      "english": "English",
+      "publishedAt": "Waktu terbit",
+      "publishedNowHelper": "Kosongkan untuk terbit sekarang.",
+      "scheduledHelper": "Berita tampil otomatis setelah waktu ini.",
+      "coverImage": "Gambar sampul",
+      "addCover": "Tambah sampul",
+      "replaceCover": "Ganti sampul",
+      "removeCover": "Hapus sampul",
+      "uploadFailed": "Gagal mengunggah gambar."
     },
     "richText": {
       "placeholder": "Tulis isi berita di sini…",

@@ -159,9 +159,9 @@
       "editor": "Editor"
     },
     "status": {
-      "PUBLISHED": "Published",
-      "DRAFT": "Draft",
-      "SCHEDULED": "Scheduled"
+      "draft": "Draft",
+      "published": "Published",
+      "scheduled": "Scheduled"
     },
     "common": {
       "save": "Save",
@@ -245,7 +245,11 @@
       "statusFailed": "Could not change the article status.",
       "deleteFailed": "Could not delete the article.",
       "deleteTitle": "Delete this article?",
-      "deleteBody": "will be deleted permanently and cannot be restored."
+      "deleteBody": "will be deleted permanently and cannot be restored.",
+      "create": "Write news",
+      "editTitle": "Edit article",
+      "editSubtitle": "Fill in the Indonesian version first; English is optional.",
+      "backToList": "Back to list"
     },
     "editor": {
       "newTitle": "Write an article",
@@ -278,7 +282,18 @@
       "saveFailed": "Could not save the article. Please try again.",
       "loadFailed": "The article could not be loaded",
       "notFound": "Article not found",
-      "notFoundBody": "It may have been deleted."
+      "notFoundBody": "It may have been deleted.",
+      "languageTabs": "Draft language",
+      "indonesian": "Indonesian",
+      "english": "English",
+      "publishedAt": "Publish time",
+      "publishedNowHelper": "Leave empty to publish now.",
+      "scheduledHelper": "The article appears automatically after this time.",
+      "coverImage": "Cover image",
+      "addCover": "Add cover",
+      "replaceCover": "Replace cover",
+      "removeCover": "Remove cover",
+      "uploadFailed": "The image could not be uploaded."
     },
     "richText": {
       "placeholder": "Write the article here…",

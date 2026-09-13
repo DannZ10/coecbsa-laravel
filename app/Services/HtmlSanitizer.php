@@ -28,8 +28,11 @@ class HtmlSanitizer
             'ul', 'ol', 'li',
             'blockquote', 'code', 'pre',
             'a[href|title|rel|target]',
-            'img[src|alt|width|height|loading]',
-            'figure', 'figcaption', 'hr',
+            // No figure/figcaption and no loading attribute: HTMLPurifier
+            // targets HTML 4.01/XHTML and rejects those outright, and the
+            // TipTap toolbar never produces them anyway.
+            'img[src|alt|width|height]',
+            'hr',
         ]));
         $config->set('HTML.TargetBlank', true);
         // rel="noopener noreferrer" is added to every target=_blank link, so an

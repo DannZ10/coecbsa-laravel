@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Auth\GoogleController;
@@ -52,6 +53,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('categories', [CategoryController::class, 'store']);
         Route::put('categories/{category:id}', [CategoryController::class, 'update']);
         Route::delete('categories/{category:id}', [CategoryController::class, 'destroy']);
+
+        Route::get('news', [ArticleController::class, 'index'])->name('news');
+        Route::get('news/create', [ArticleController::class, 'create'])->name('news.create');
+        Route::post('news', [ArticleController::class, 'store']);
+        Route::get('news/{article:id}/edit', [ArticleController::class, 'edit'])->name('news.edit');
+        Route::put('news/{article:id}', [ArticleController::class, 'update']);
+        Route::delete('news/{article:id}', [ArticleController::class, 'destroy']);
 
         Route::get('media', [MediaController::class, 'index'])->name('media');
         Route::post('media', [MediaController::class, 'store']);
