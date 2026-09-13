@@ -20,6 +20,13 @@ return Application::configure(basePath: dirname(__DIR__))
             SecurityHeaders::class,
             HandleInertiaRequests::class,
         ]);
+
+        // The panel's sign-in page is `admin.login`, not the framework's
+        // default `login`. Without these the auth middleware looks up a route
+        // that does not exist and a guest hitting /admin gets a 500 instead of
+        // the login form.
+        $middleware->redirectGuestsTo(fn () => route('admin.login'));
+        $middleware->redirectUsersTo(fn () => route('admin.dashboard'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
