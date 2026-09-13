@@ -15,17 +15,9 @@ export default defineConfig({
     resolve: {
         alias: { '@': path.resolve(import.meta.dirname, 'resources/js') },
     },
-    build: {
-        // Public visitors must never download the CMS bundle. Inertia resolves
-        // pages lazily, so Rollup already splits per page; this only keeps the
-        // shared vendor chunk from pulling the editor in with it.
-        rollupOptions: {
-            output: {
-                manualChunks(id) {
-                    if (id.includes('@tiptap')) return 'editor';
-                    if (id.includes('three')) return 'three';
-                },
-            },
-        },
-    },
+    // No manualChunks. Forcing @tiptap into a named chunk made that chunk a
+    // dependency of the entry, so the CMS editor was modulepreloaded on the
+    // public home page — the opposite of the intent. Inertia imports pages
+    // lazily and the hero imports three.js lazily, so Rollup's own splitting
+    // already keeps both off the initial path.
 });

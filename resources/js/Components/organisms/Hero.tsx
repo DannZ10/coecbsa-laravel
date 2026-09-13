@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -7,7 +7,13 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
-import { ThreeField } from "@/Components/atoms/ThreeField";
+// three.js is ~150 kB of JavaScript for a decorative particle drift. Loading
+// it lazily keeps it out of the initial chunk and off the path to first paint;
+// it is fetched only once the hero has mounted, and never when the visitor has
+// asked for reduced motion.
+const ThreeField = lazy(() =>
+  import("@/Components/atoms/ThreeField").then((module) => ({ default: module.ThreeField })),
+);
 import { Button } from "@/Components/atoms/Button";
 import { Kicker } from "@/Components/atoms/Kicker";
 import { ImageWithFallback } from "@/Components/atoms/ImageWithFallback";
@@ -32,6 +38,25 @@ export function Hero() {
   const { t } = useI18n();
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
+
+  // Gated on mount, so the particle field is never part of the server render
+  // or the first paint — the heading and the photograph are.
+  const [showParticles, setShowParticles] = useState(false);
+  useEffect(() => {
+    if (reduce) return;
+    // `in window` would narrow the else branch to never, so the callbacks are
+    // read off the object instead.
+    const requestIdle = window.requestIdleCallback;
+    const cancelIdle = window.cancelIdleCallback;
+    const start = () => setShowParticles(true);
+
+    const handle = requestIdle ? requestIdle(start) : window.setTimeout(start, 400);
+
+    return () => {
+      if (cancelIdle) cancelIdle(handle);
+      else window.clearTimeout(handle);
+    };
+  }, [reduce]);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 140]);
@@ -107,7 +132,11 @@ export function Hero() {
         }}
       />
       <div className="pointer-events-none absolute inset-0 grain opacity-50" aria-hidden />
-      <ThreeField className="pointer-events-none absolute inset-0 opacity-70" />
+      {showParticles && (
+        <Suspense fallback={null}>
+          <ThreeField className="pointer-events-none absolute inset-0 opacity-70" />
+        </Suspense>
+      )}
 
       <div className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-8 px-5 pb-16 pt-28 sm:px-8 lg:grid-cols-12 lg:px-12">
         {/* Text column */}
