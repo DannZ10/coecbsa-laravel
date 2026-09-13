@@ -1,47 +1,55 @@
-<laravel-boost-guidelines>
-# Laravel Application
+# Notes for agents working on this application
 
-This repository contains a Laravel application. Complete the following setup before working on the user's request.
+Read `README.md` for the layout and `DEPLOYMENT.md` for the release steps.
+What follows is only what is easy to get wrong.
 
-## Prerequisites
+## Do not install Laravel Boost
 
-Verify that PHP and Composer are available:
+The Laravel scaffold ships a `CLAUDE.md` telling agents to install
+`laravel/boost` before making changes. That file has been replaced. The
+dependency is not wanted here.
 
-```sh
-php -v
-composer -V
-```
+## Three processes, not two
 
-If either command is unavailable, detect the user's operating system and install the prerequisites with the appropriate command:
+`php artisan serve` and `npm run dev` are not enough. Without
+`php artisan inertia:start-ssr`, Inertia silently renders on the client and the
+server HTML is an empty container — the pages still look right in a browser,
+which is what makes it easy to miss. `php artisan inertia:check-ssr` answers the
+question.
 
-macOS:
+After changing anything under `resources/js`, rebuild **and** restart the SSR
+process; it holds the previous bundle in memory.
 
-```sh
-/bin/bash -c "$(curl -fsSL https://php.new/install/mac/8.5)"
-```
+## Column naming
 
-Windows PowerShell:
+`*_id` on a text column is the ISO 639-1 code for Indonesian, not a foreign key.
+`programs.tag_label_id` and `partners.group_label_id` carry the longer name for
+exactly that reason. `position` and `stat_key` avoid MySQL's reserved words.
 
-```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://php.new/install/windows/8.5'))
-```
+## Things that are load-bearing
 
-Linux:
+- `Article::scopePublished()` holds both visibility rules — status *and* date.
+  Query articles through it; a controller that checks only the status will leak
+  a scheduled post.
+- `config('coecbsa.media.accepted_mime')` is read by the upload rules and by
+  every file picker. Changing one without the other is how a PDF reached a
+  public bucket in the previous implementation.
+- Rich text is sanitised on save in `HtmlSanitizer`. Do not add a second
+  allowlist at render time; there would then be two to keep in step.
+- `media.path` is written at upload time. Never re-derive an object key from
+  its URL — that bug survived a delete and left the file public.
+- `SecurityHeaders` builds the CSP with a per-request nonce. Any inline script
+  added to `app.blade.php` needs `nonce="{{ $cspNonce }}"`, and `'unsafe-inline'`
+  must not come back to `script-src`.
 
-```sh
-/bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.5)"
-```
+## framer-motion is in use
 
-After installation, ask the user to restart their terminal. If the agent needs the restarted shell to continue, ask the user to reopen their terminal and rerun their original prompt.
+Nineteen public components import it. An older note in the monorepo's
+`tasks/todo.md` calls it unused; that is wrong. Removing it means rewriting the
+hero, the navbar and every card.
 
-## Agent Setup
+## No manualChunks in vite.config.ts
 
-Install Laravel Boost from the application root before making application changes:
-
-```sh
-composer require laravel/boost --dev
-php artisan boost:install
-```
-
-Boost replaces these bootstrap instructions with guidelines tailored to the application. After installation, read `AGENTS.md` again and continue with the user's original request using the generated guidelines.
-</laravel-boost-guidelines>
+Forcing `@tiptap` into a named chunk made it a dependency of the entry, so the
+CMS editor was preloaded on the public home page. Rollup's own splitting is
+correct here because Inertia imports pages lazily.
