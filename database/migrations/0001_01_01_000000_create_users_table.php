@@ -16,7 +16,16 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            // Nullable: an account may sign in through Google only. Auth::attempt
+            // fails closed on a null hash, so such a user cannot be logged in
+            // with a password guess.
+            $table->string('password')->nullable();
+            $table->string('google_id')->nullable()->unique();
+            // String, not a native enum: MySQL enums cannot be altered without a
+            // table rebuild, and the app validates the value anyway.
+            $table->string('role', 20)->default('editor');
+            $table->boolean('is_active')->default(true);
+            $table->timestamp('last_login_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
