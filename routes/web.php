@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\SetLocale;
@@ -43,6 +44,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         })->name('locale');
 
         Route::get('/', fn () => Inertia::render('Admin/Dashboard'))->name('dashboard');
+
+        // Bound by id, not by the model's slug route key: editing a slug would
+        // otherwise change the URL of the row being edited mid-request.
+        Route::get('categories', [CategoryController::class, 'index'])->name('categories');
+        Route::post('categories', [CategoryController::class, 'store']);
+        Route::put('categories/{category:id}', [CategoryController::class, 'update']);
+        Route::delete('categories/{category:id}', [CategoryController::class, 'destroy']);
     });
 });
 

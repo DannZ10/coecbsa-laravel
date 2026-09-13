@@ -327,7 +327,9 @@
       "empty": "Belum ada kategori",
       "emptyBody": "Tambahkan kategori pertama lewat formulir di atas.",
       "deleteTitle": "Hapus kategori ini?",
-      "deleteBody": "akan dihapus. Berita yang memakainya akan kehilangan kategori, tetapi tidak ikut terhapus."
+      "deleteBody": "akan dihapus. Berita yang memakainya akan kehilangan kategori, tetapi tidak ikut terhapus.",
+      "articleCount": "{count} berita",
+      "deleteWarning": "Kategori ini dipakai oleh {count} berita. Berita tetap ada, tetapi kehilangan kategorinya."
     },
     "media": {
       "title": "Media",

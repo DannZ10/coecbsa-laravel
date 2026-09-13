@@ -327,7 +327,9 @@
       "empty": "No categories yet",
       "emptyBody": "Add the first one using the form above.",
       "deleteTitle": "Delete this category?",
-      "deleteBody": "will be deleted. Articles using it lose their category but are not deleted."
+      "deleteBody": "will be deleted. Articles using it lose their category but are not deleted.",
+      "articleCount": "{count} articles",
+      "deleteWarning": "This category is used by {count} articles. They stay published but lose their category."
     },
     "media": {
       "title": "Media",

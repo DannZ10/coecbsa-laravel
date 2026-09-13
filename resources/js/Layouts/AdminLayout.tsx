@@ -18,6 +18,7 @@ import {
     X,
 } from 'lucide-react';
 import * as React from 'react';
+import { Alert } from '@/Components/ui/alert';
 import { useLocale, useTranslations, type SharedProps } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
 
@@ -220,7 +221,40 @@ export default function AdminLayout({
                 <main id="main-content" className="cms-content" tabIndex={-1}>
                     {children}
                 </main>
+
+                <FlashToast />
             </div>
+        </div>
+    );
+}
+
+/**
+ * Shows the flash message the last request set.
+ *
+ * Keyed on the message itself so a second save of the same kind re-triggers the
+ * effect: without the key, saving twice would leave the first toast's timer
+ * running and the second one would vanish early.
+ */
+function FlashToast() {
+    const flash = usePage<SharedProps>().props.flash;
+    const message = flash.success ?? flash.error;
+    const variant = flash.success ? 'success' : 'danger';
+    const [visible, setVisible] = React.useState(false);
+
+    React.useEffect(() => {
+        if (!message) return;
+        setVisible(true);
+        const timer = window.setTimeout(() => setVisible(false), 4000);
+        return () => window.clearTimeout(timer);
+    }, [message]);
+
+    if (!message || !visible) return null;
+
+    return (
+        <div className="pointer-events-none fixed bottom-5 right-5 z-toast w-[min(24rem,calc(100vw-2.5rem))]">
+            <Alert variant={variant} className="pointer-events-auto shadow-xl">
+                {message}
+            </Alert>
         </div>
     );
 }
