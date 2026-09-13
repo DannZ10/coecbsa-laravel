@@ -9,4 +9,6 @@ return [
     'deleted' => 'Berhasil dihapus.',
     'saved' => 'Tersimpan.',
     'delete_failed' => 'Berkas gagal dihapus dari penyimpanan. Coba lagi.',
+    'cannot_delete_self' => 'Akun sendiri tidak dapat dihapus.',
+    'deactivated' => 'Akun dinonaktifkan karena pernah menulis berita.',
 ];

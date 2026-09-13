@@ -226,7 +226,12 @@
       "recentGallery": "Latest gallery items",
       "manageGallery": "Manage gallery",
       "emptyGallery": "The gallery is empty",
-      "emptyGalleryBody": "Upload documentation so it appears on the public site."
+      "emptyGalleryBody": "Upload documentation so it appears on the public site.",
+      "media": "Media files",
+      "gallery": "Gallery photos",
+      "unread": "Unread messages",
+      "recent": "Recently edited",
+      "recentEmpty": "No articles yet."
     },
     "news": {
       "title": "News",
@@ -368,9 +373,9 @@
       "title": "Gallery",
       "subtitle": "Activity documentation shown on the public gallery page.",
       "albums": "Albums",
-      "albumNameId": "Name (Indonesian)",
+      "albumNameId": "Album name (Indonesian)",
       "albumNameIdPlaceholder": "Sekolah Lapang",
-      "albumNameEn": "Name (English)",
+      "albumNameEn": "Album name (English)",
       "albumNameEnPlaceholder": "Field School",
       "albumSlug": "Slug",
       "albumSlugHelper": "Used in the gallery filter.",
@@ -405,19 +410,33 @@
       "emptyBody": "Upload activity documentation using the form above.",
       "deletePhotoTitle": "Delete this photo?",
       "deletePhotoBody": "The photo disappears from the public gallery. The underlying file stays in the media library.",
-      "photoFallback": "photo"
+      "photoFallback": "photo",
+      "addItem": "Add photo",
+      "editItem": "Edit photo",
+      "itemTitleId": "Title (Indonesian)",
+      "itemTitleEn": "Title (English)",
+      "captionId": "Caption (Indonesian)",
+      "captionEn": "Caption (English)",
+      "image": "Image",
+      "upload": "Upload",
+      "position": "Order",
+      "positionHelper": "Lower numbers appear first.",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "deleteTitle": "Delete this photo?",
+      "deleteBody": "The photo will be permanently removed from the gallery."
     },
     "users": {
       "title": "Users",
       "subtitle": "Pre-register a verified Google email before that person signs in.",
       "forbidden": "Super Admins only",
       "forbiddenBody": "Editor accounts cannot reach user management.",
-      "addTitle": "Register an account",
-      "editTitle": "Edit {name}",
+      "addTitle": "Add user",
+      "editTitle": "Edit “{name}”",
       "name": "Name",
       "email": "Email",
       "password": "Password",
-      "passwordHelper": "At least 12 characters.",
+      "passwordHelper": "At least 12 characters. Leave empty for a Google-only account.",
       "role": "Role",
       "accountStatus": "Account status",
       "active": "Active",
@@ -435,7 +454,12 @@
       "lastLogin": "last signed in {date}",
       "neverLoggedIn": "never signed in",
       "deleteTitle": "Delete this user?",
-      "deleteBody": "will lose access to the CMS. Articles they wrote remain."
+      "deleteBody": "will be removed. If they have written articles the account is deactivated instead, keeping bylines intact.",
+      "activeHelper": "Account is active and can sign in",
+      "passwordConfirm": "Repeat password",
+      "googleLinked": "Google linked",
+      "googleOnly": "no password",
+      "selfEditNotice": "You cannot change your own role or status, so the panel cannot be locked."
     },
     "inbox": {
       "title": "Inbox",
@@ -459,7 +483,9 @@
       "deleteBody": "will be permanently deleted. This cannot be undone.",
       "deleteFailed": "Could not delete the message.",
       "updateFailed": "Could not update the message.",
-      "unread": "Unread"
+      "unread": "Unread",
+      "onlyUnread": "Unread only",
+      "unreadCount": "{count} unread"
     },
     "content": {
       "title": "Homepage content",
@@ -579,7 +605,15 @@
       "languageHelper": "Changes the CMS interface language. The public site language is set separately from the navbar.",
       "identityHeading": "Sign-in identity",
       "identityTitle": "Protected by Google OAuth",
-      "identityBody": "Your verified Google account is linked to this pre-registered CMS email. Password and recovery settings are managed by Google."
+      "identityBody": "Your verified Google account is linked to this pre-registered CMS email. Password and recovery settings are managed by Google.",
+      "profile": "Profile",
+      "profileHelper": "The name and email shown in the panel.",
+      "password": "Password",
+      "passwordHelper": "Change this account’s password.",
+      "roleLine": "Role: {role}",
+      "googleLinked": "Google linked",
+      "minLength": "At least 12 characters.",
+      "noPasswordYet": "This account has no password yet. Fill in the fields below to set one."
     },
     "programStatus": {
       "ongoing": "Ongoing",

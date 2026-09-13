@@ -2,10 +2,15 @@
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ImpactController;
+use App\Http\Controllers\Admin\InboxController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProgramController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\SetLocale;
@@ -48,7 +53,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             return back();
         })->name('locale');
 
-        Route::get('/', fn () => Inertia::render('Admin/Dashboard'))->name('dashboard');
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         // Bound by id, not by the model's slug route key: editing a slug would
         // otherwise change the URL of the row being edited mid-request.
@@ -85,6 +90,31 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('media', [MediaController::class, 'store']);
         Route::put('media/{media:id}', [MediaController::class, 'update']);
         Route::delete('media/{media:id}', [MediaController::class, 'destroy']);
+
+        Route::get('gallery', [GalleryController::class, 'index'])->name('gallery');
+        Route::post('gallery/albums', [GalleryController::class, 'storeAlbum']);
+        Route::put('gallery/albums/{album:id}', [GalleryController::class, 'updateAlbum']);
+        Route::delete('gallery/albums/{album:id}', [GalleryController::class, 'destroyAlbum']);
+        Route::post('gallery/items', [GalleryController::class, 'storeItem']);
+        Route::put('gallery/items/{item:id}', [GalleryController::class, 'updateItem']);
+        Route::delete('gallery/items/{item:id}', [GalleryController::class, 'destroyItem']);
+
+        Route::get('contact', [InboxController::class, 'index'])->name('contact');
+        Route::put('contact/{message:id}', [InboxController::class, 'update']);
+        Route::delete('contact/{message:id}', [InboxController::class, 'destroy']);
+
+        Route::get('settings', [SettingController::class, 'index'])->name('settings');
+        Route::put('settings/profile', [SettingController::class, 'updateProfile']);
+        Route::put('settings/password', [SettingController::class, 'updatePassword']);
+
+        // Managing operators is the one capability an editor must not have.
+        Route::middleware('can:manage-users')->group(function () {
+            Route::get('users', [UserController::class, 'index'])->name('users');
+            Route::post('users', [UserController::class, 'store']);
+            Route::put('users/{user:id}', [UserController::class, 'update']);
+            Route::delete('users/{user:id}', [UserController::class, 'destroy']);
+        });
+
     });
 });
 

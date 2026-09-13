@@ -226,7 +226,12 @@
       "recentGallery": "Galeri terbaru",
       "manageGallery": "Kelola galeri",
       "emptyGallery": "Galeri masih kosong",
-      "emptyGalleryBody": "Unggah dokumentasi kegiatan untuk ditampilkan di situs publik."
+      "emptyGalleryBody": "Unggah dokumentasi kegiatan untuk ditampilkan di situs publik.",
+      "media": "Berkas media",
+      "gallery": "Foto galeri",
+      "unread": "Pesan belum dibaca",
+      "recent": "Terakhir disunting",
+      "recentEmpty": "Belum ada berita."
     },
     "news": {
       "title": "Berita",
@@ -368,9 +373,9 @@
       "title": "Galeri",
       "subtitle": "Dokumentasi kegiatan yang tampil di halaman galeri publik.",
       "albums": "Album",
-      "albumNameId": "Nama (Indonesia)",
+      "albumNameId": "Nama album (Indonesia)",
       "albumNameIdPlaceholder": "Sekolah Lapang",
-      "albumNameEn": "Name (English)",
+      "albumNameEn": "Album name (English)",
       "albumNameEnPlaceholder": "Field School",
       "albumSlug": "Slug",
       "albumSlugHelper": "Dipakai pada filter galeri.",
@@ -405,19 +410,33 @@
       "emptyBody": "Unggah dokumentasi kegiatan lewat formulir di atas.",
       "deletePhotoTitle": "Hapus foto ini?",
       "deletePhotoBody": "Foto akan hilang dari galeri publik. Berkas aslinya tetap ada di pustaka media.",
-      "photoFallback": "foto"
+      "photoFallback": "foto",
+      "addItem": "Tambah foto",
+      "editItem": "Edit foto",
+      "itemTitleId": "Judul (Indonesia)",
+      "itemTitleEn": "Title (English)",
+      "captionId": "Keterangan (Indonesia)",
+      "captionEn": "Caption (English)",
+      "image": "Gambar",
+      "upload": "Unggah",
+      "position": "Urutan",
+      "positionHelper": "Angka kecil tampil lebih dulu.",
+      "moveUp": "Naikkan urutan",
+      "moveDown": "Turunkan urutan",
+      "deleteTitle": "Hapus foto ini?",
+      "deleteBody": "Foto akan dihapus permanen dari galeri."
     },
     "users": {
       "title": "Pengguna",
       "subtitle": "Daftarkan email Google terverifikasi sebelum pengguna tersebut masuk.",
       "forbidden": "Halaman khusus Super Admin",
       "forbiddenBody": "Akun Editor tidak memiliki akses ke manajemen pengguna.",
-      "addTitle": "Daftarkan akun",
-      "editTitle": "Edit {name}",
+      "addTitle": "Tambah pengguna",
+      "editTitle": "Edit “{name}”",
       "name": "Nama",
       "email": "Email",
       "password": "Kata sandi",
-      "passwordHelper": "Minimal 12 karakter.",
+      "passwordHelper": "Minimal 12 karakter. Kosongkan bila akun hanya memakai Google.",
       "role": "Peran",
       "accountStatus": "Status akun",
       "active": "Aktif",
@@ -435,7 +454,12 @@
       "lastLogin": "masuk terakhir {date}",
       "neverLoggedIn": "belum pernah masuk",
       "deleteTitle": "Hapus pengguna ini?",
-      "deleteBody": "akan kehilangan akses ke CMS. Berita yang pernah ditulisnya tetap ada."
+      "deleteBody": "akan dihapus. Bila pernah menulis berita, akun dinonaktifkan agar nama penulis tetap utuh.",
+      "activeHelper": "Akun aktif dan dapat masuk",
+      "passwordConfirm": "Ulangi kata sandi",
+      "googleLinked": "Google tertaut",
+      "googleOnly": "tanpa kata sandi",
+      "selfEditNotice": "Peran dan status akun sendiri tidak dapat diubah, agar panel tidak terkunci."
     },
     "inbox": {
       "title": "Pesan Masuk",
@@ -459,7 +483,9 @@
       "deleteBody": "akan dihapus permanen. Tindakan ini tidak dapat dibatalkan.",
       "deleteFailed": "Gagal menghapus pesan.",
       "updateFailed": "Gagal memperbarui pesan.",
-      "unread": "Belum dibaca"
+      "unread": "Belum dibaca",
+      "onlyUnread": "Hanya belum dibaca",
+      "unreadCount": "{count} belum dibaca"
     },
     "content": {
       "title": "Konten beranda",
@@ -579,7 +605,15 @@
       "languageHelper": "Mengubah bahasa antarmuka CMS. Bahasa situs publik diatur terpisah lewat tombol di navbar.",
       "identityHeading": "Identitas masuk",
       "identityTitle": "Dilindungi oleh Google OAuth",
-      "identityBody": "Akun Google terverifikasi Anda ditautkan ke email CMS yang telah didaftarkan. Kata sandi dan pemulihan dikelola oleh Google."
+      "identityBody": "Akun Google terverifikasi Anda ditautkan ke email CMS yang telah didaftarkan. Kata sandi dan pemulihan dikelola oleh Google.",
+      "profile": "Profil",
+      "profileHelper": "Nama dan email yang tampil di panel.",
+      "password": "Kata sandi",
+      "passwordHelper": "Ganti kata sandi akun ini.",
+      "roleLine": "Peran: {role}",
+      "googleLinked": "Google tertaut",
+      "minLength": "Minimal 12 karakter.",
+      "noPasswordYet": "Akun ini belum punya kata sandi. Isi kolom di bawah untuk membuatnya."
     },
     "programStatus": {
       "ongoing": "Berjalan",
