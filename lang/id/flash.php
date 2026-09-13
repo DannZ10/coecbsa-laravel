@@ -8,4 +8,5 @@ return [
     'updated' => 'Perubahan tersimpan.',
     'deleted' => 'Berhasil dihapus.',
     'saved' => 'Tersimpan.',
+    'delete_failed' => 'Berkas gagal dihapus dari penyimpanan. Coba lagi.',
 ];

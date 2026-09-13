@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\SetLocale;
@@ -51,6 +52,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('categories', [CategoryController::class, 'store']);
         Route::put('categories/{category:id}', [CategoryController::class, 'update']);
         Route::delete('categories/{category:id}', [CategoryController::class, 'destroy']);
+
+        Route::get('media', [MediaController::class, 'index'])->name('media');
+        Route::post('media', [MediaController::class, 'store']);
+        Route::put('media/{media:id}', [MediaController::class, 'update']);
+        Route::delete('media/{media:id}', [MediaController::class, 'destroy']);
     });
 });
 

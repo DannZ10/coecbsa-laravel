@@ -10,6 +10,10 @@ return new class extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
+            // The object key on the media disk, recorded at upload time.
+            // Deriving it back from the URL is what previously let a delete
+            // report success while the object stayed public in the bucket.
+            $table->string('path')->unique();
             $table->string('url');
             // Mime type of the bytes actually stored, which is not necessarily
             // what was uploaded: images are re-encoded to WebP on the way in.

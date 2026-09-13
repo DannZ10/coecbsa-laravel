@@ -333,7 +333,7 @@
     },
     "media": {
       "title": "Media",
-      "subtitle": "Files uploaded from the article editor and the gallery collect here.",
+      "subtitle": "Files uploaded from the news editor and the gallery collect here. Up to {size} MB, converted to WebP on upload.",
       "upload": "Upload a file",
       "copyUrl": "Copy URL",
       "copied": "Copied",
@@ -344,7 +344,10 @@
       "uploadFailed": "Could not upload the file.",
       "deleteFailed": "Could not delete the file.",
       "deleteTitle": "Delete this file?",
-      "deleteBody": "will be deleted permanently. Articles or gallery items still using it will lose the image."
+      "deleteBody": "will be deleted permanently. Articles or gallery items still using it will lose the image.",
+      "altId": "Alt text (Indonesian)",
+      "altEn": "Alt text (English)",
+      "altAction": "Alt text"
     },
     "gallery": {
       "title": "Gallery",

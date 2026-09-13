@@ -47,6 +47,29 @@ return [
             'report' => false,
         ],
 
+        /*
+         * Uploaded media. Points at Supabase Storage (S3-compatible) in hosted
+         * environments; locally `MEDIA_DISK=public` keeps files under
+         * storage/app/public instead, so no bucket is needed to develop.
+         *
+         * `throw` is true here on purpose. The other disks swallow failures and
+         * return false, which is how a delete could once report success while
+         * the object stayed public in the bucket.
+         */
+        'media' => [
+            'driver' => 's3',
+            'key' => env('MEDIA_KEY'),
+            'secret' => env('MEDIA_SECRET'),
+            'region' => env('MEDIA_REGION', 'ap-southeast-1'),
+            'bucket' => env('MEDIA_BUCKET'),
+            'url' => env('MEDIA_PUBLIC_URL'),
+            'endpoint' => env('MEDIA_ENDPOINT'),
+            'use_path_style_endpoint' => env('MEDIA_USE_PATH_STYLE', true),
+            'visibility' => 'public',
+            'throw' => true,
+            'report' => true,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

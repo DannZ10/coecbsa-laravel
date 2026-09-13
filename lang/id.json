@@ -333,7 +333,7 @@
     },
     "media": {
       "title": "Media",
-      "subtitle": "Berkas yang diunggah dari editor berita dan galeri berkumpul di sini.",
+      "subtitle": "Berkas yang diunggah dari editor berita dan galeri berkumpul di sini. Maksimal {size} MB, otomatis dikonversi ke WebP.",
       "upload": "Unggah berkas",
       "copyUrl": "Salin URL",
       "copied": "Tersalin",
@@ -344,7 +344,10 @@
       "uploadFailed": "Gagal mengunggah berkas.",
       "deleteFailed": "Gagal menghapus berkas.",
       "deleteTitle": "Hapus berkas ini?",
-      "deleteBody": "akan dihapus permanen. Berita atau galeri yang masih memakainya akan kehilangan gambar."
+      "deleteBody": "akan dihapus permanen. Berita atau galeri yang masih memakainya akan kehilangan gambar.",
+      "altId": "Teks alternatif (Indonesia)",
+      "altEn": "Alt text (English)",
+      "altAction": "Teks alternatif"
     },
     "gallery": {
       "title": "Galeri",
