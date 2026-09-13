@@ -30,7 +30,7 @@ export const ADMIN_NAV = [
     { href: '/admin', key: 'dashboard', icon: LayoutDashboard },
     { href: '/admin/news', key: 'news', icon: Newspaper },
     { href: '/admin/categories', key: 'categories', icon: Tags },
-    { href: '/admin/content', key: 'content', icon: SlidersHorizontal },
+    { href: '/admin/content/programs', key: 'content', icon: SlidersHorizontal },
     { href: '/admin/gallery', key: 'gallery', icon: Images },
     { href: '/admin/media', key: 'media', icon: LibraryBig },
     { href: '/admin/contact', key: 'inbox', icon: Mail },

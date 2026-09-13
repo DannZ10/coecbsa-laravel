@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ImpactController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\ProgramController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\SetLocale;
@@ -60,6 +63,23 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('news/{article:id}/edit', [ArticleController::class, 'edit'])->name('news.edit');
         Route::put('news/{article:id}', [ArticleController::class, 'update']);
         Route::delete('news/{article:id}', [ArticleController::class, 'destroy']);
+
+        // Three routes rather than one page: the previous CMS put programs,
+        // partners and impact in a single 910-line screen, where a validation
+        // failure in one section discarded unsaved edits in the others.
+        Route::redirect('content', '/admin/content/programs');
+        Route::get('content/programs', [ProgramController::class, 'index'])->name('content.programs');
+        Route::post('content/programs', [ProgramController::class, 'store']);
+        Route::put('content/programs/{program:id}', [ProgramController::class, 'update']);
+        Route::delete('content/programs/{program:id}', [ProgramController::class, 'destroy']);
+
+        Route::get('content/partners', [PartnerController::class, 'index'])->name('content.partners');
+        Route::post('content/partners', [PartnerController::class, 'store']);
+        Route::put('content/partners/{partner:id}', [PartnerController::class, 'update']);
+        Route::delete('content/partners/{partner:id}', [PartnerController::class, 'destroy']);
+
+        Route::get('content/impact', [ImpactController::class, 'index'])->name('content.impact');
+        Route::put('content/impact', [ImpactController::class, 'update']);
 
         Route::get('media', [MediaController::class, 'index'])->name('media');
         Route::post('media', [MediaController::class, 'store']);
