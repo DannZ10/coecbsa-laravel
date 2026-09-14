@@ -62,7 +62,7 @@ export function Programs({ items: apiItems }: { items?: ProgramContent[] }) {
                             className={`font-display text-lg font-bold leading-snug transition-colors sm:text-xl ${
                               on
                                 ? 'text-forest-800'
-                                : 'text-forest-900/55 group-hover:text-forest-900/85'
+                                : 'text-forest-900/65 group-hover:text-forest-900/85'
                             }`}
                           >
                             {t(p.title)}

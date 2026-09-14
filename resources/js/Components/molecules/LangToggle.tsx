@@ -39,7 +39,7 @@ export function LangToggle({ tone = "forest" }: { tone?: "forest" | "paper" }) {
                     : "text-paper"
                   : paper
                     ? "text-paper/70 group-hover:text-paper"
-                    : "text-forest-800/60 group-hover:text-forest-800/90"
+                    : "text-forest-800/70 group-hover:text-forest-800/90"
               }`}
             >
               {o}

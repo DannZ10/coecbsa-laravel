@@ -124,7 +124,7 @@ export default function NewsShow({ article, related }: { article: Article; relat
                                                     {item.title}
                                                 </p>
                                                 {item.published_at && (
-                                                    <p className="mt-2 text-xs text-forest-800/60">
+                                                    <p className="mt-2 text-xs text-forest-800/70">
                                                         {formatDate(item.published_at, locale)}
                                                     </p>
                                                 )}

@@ -75,7 +75,7 @@ export function FocusAreas() {
                       <div className="flex-1">
                         <h3
                           className={`font-display text-2xl tracking-tight transition-colors sm:text-3xl ${
-                            isActive ? "text-forest-800" : "text-forest-900/50 group-hover:text-forest-900/80"
+                            isActive ? "text-forest-800" : "text-forest-900/65 group-hover:text-forest-900/85"
                           }`}
                         >
                           {t(item.title)}
