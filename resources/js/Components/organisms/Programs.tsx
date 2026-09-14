@@ -50,12 +50,15 @@ export function Programs({ items: apiItems }: { items?: ProgramContent[] }) {
                     >
                       <div className="flex items-start gap-4">
                         <span
-                          className={`text-sm font-semibold transition-colors ${on ? 'text-amber' : 'text-muted-foreground'}`}
+                          className={`text-sm font-semibold transition-colors ${on ? 'text-amber-800' : 'text-muted-foreground'}`}
                         >
                           0{i + 1}
                         </span>
                         <div className="flex-1">
-                          <h4
+                          {/* h3, not h4: the section heading is an h2 and the
+                              detail panel beside this list is also an h3, so an
+                              h4 here skipped a level. */}
+                          <h3
                             className={`font-display text-lg font-bold leading-snug transition-colors sm:text-xl ${
                               on
                                 ? 'text-forest-800'
@@ -63,7 +66,7 @@ export function Programs({ items: apiItems }: { items?: ProgramContent[] }) {
                             }`}
                           >
                             {t(p.title)}
-                          </h4>
+                          </h3>
                           <p
                             className={`mt-1 text-xs font-medium transition-colors ${on ? 'text-forest-700' : 'text-muted-foreground'}`}
                           >

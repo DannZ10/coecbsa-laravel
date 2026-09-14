@@ -334,3 +334,41 @@
     color: var(--color-accent-strong);
   }
 }
+
+/* -------------------------------------------------------------------------
+   Hero entrance
+   
+   These run as CSS, not through framer-motion's `initial` prop, because that
+   prop is serialised into the server HTML as `style="opacity:0"`. The hero
+   then stays invisible until hydration finishes, which pushed First
+   Contentful Paint from the moment the HTML was parsed to roughly a second
+   and a half later — and left the page blank entirely if the bundle failed.
+
+   As CSS the markup carries no hidden state: the animation simply starts at
+   first paint, and a browser that never runs the bundle still shows the hero.
+   ------------------------------------------------------------------------- */
+
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes hero-word {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+
+.hero-enter {
+  animation: hero-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-word {
+  animation: hero-word 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter,
+  .hero-word {
+    animation: none;
+  }
+}

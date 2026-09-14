@@ -68,7 +68,7 @@ export function FocusAreas() {
                   >
                     <div className="flex items-baseline gap-5">
                       <span
-                        className={`font-mono text-sm transition-colors ${isActive ? "text-amber" : "text-muted-foreground"}`}
+                        className={`font-mono text-sm transition-colors ${isActive ? "text-amber-800" : "text-muted-foreground"}`}
                       >
                         {item.no}
                       </span>

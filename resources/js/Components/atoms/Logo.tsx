@@ -16,8 +16,10 @@ export function Logo({
 }) {
   const img = (
     <ImageWithFallback
-      src="/brand/coe-cbsa.png"
+      src="/brand/coe-cbsa.webp"
       alt="CoE CBSA, Community-Based Sustainable Agroindustry"
+      width={405}
+      height={240}
       className={`${className} w-auto object-contain transition-[filter] duration-300 ${light ? "[filter:brightness(0)_invert(1)]" : ""}`}
     />
   );

@@ -71,7 +71,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-paper/10 pt-6 text-[0.66rem] font-medium uppercase tracking-wider text-paper/50 sm:flex-row sm:items-center">
+        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-paper/10 pt-6 text-[0.66rem] font-medium uppercase tracking-wider text-paper/60 sm:flex-row sm:items-center">
           <span>© {year} CoE CBSA, Universitas Brawijaya</span>
           <span>Malang, Jawa Timur, Indonesia</span>
         </div>

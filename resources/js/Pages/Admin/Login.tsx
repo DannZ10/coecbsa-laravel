@@ -28,7 +28,7 @@ export default function Login({ googleEnabled }: { googleEnabled: boolean }) {
 
             <div className="cms-login-main">
                 <div className="cms-login-panel">
-                    <img src="/brand/coe-cbsa.png" alt="CoE CBSA" className="cms-brand" width={144} height={44} />
+                    <img src="/brand/coe-cbsa.webp" alt="CoE CBSA" className="cms-brand" width={144} height={44} />
 
                     <div className="cms-login-icon">
                         <ShieldCheck className="h-5 w-5" aria-hidden />

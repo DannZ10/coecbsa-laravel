@@ -141,9 +141,9 @@ export function Hero() {
       <div className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-8 px-5 pb-16 pt-28 sm:px-8 lg:grid-cols-12 lg:px-12">
         {/* Text column */}
         <motion.div style={{ y: textY, opacity: fade }} className="lg:col-span-6">
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }}>
+          <div className="hero-enter">
             <Kicker tone="paper">{t(hero.eyebrow)}</Kicker>
-          </motion.div>
+          </div>
 
           <h1
             onPointerMove={setTitleLightPosition}
@@ -152,33 +152,27 @@ export function Hero() {
           >
             {words.map((w, i) => (
               <span key={i} className="inline-block overflow-hidden pb-1 align-top">
-                <motion.span
+                <span
                   data-hero-title-word
-                  className="hero-title-light inline-block"
-                  initial={{ y: "110%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.15 + i * 0.05, ease }}
+                  className="hero-title-light hero-word inline-block"
+                  style={{ animationDelay: `${(0.04 + i * 0.02).toFixed(2)}s` }}
                 >
                   {w}&nbsp;
-                </motion.span>
+                </span>
               </span>
             ))}
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.45, ease }}
-            className="mt-5 max-w-md text-sm leading-relaxed text-forest-300 sm:text-base"
+          <p
+            className="hero-enter mt-5 max-w-md text-sm leading-relaxed text-forest-300 sm:text-base"
+            style={{ animationDelay: '0.25s' }}
           >
             {t(hero.lead)}
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.58, ease }}
-            className="mt-8 flex flex-wrap items-center gap-3"
+          <div
+            className="hero-enter mt-8 flex flex-wrap items-center gap-3"
+            style={{ animationDelay: '0.35s' }}
           >
             <Button to="/program" variant="paper" from="left">
               {t(hero.primaryCta)}
@@ -186,7 +180,7 @@ export function Hero() {
             <Button to="/#impact" variant="outlinePaper" from="right">
               {t(hero.secondaryCta)}
             </Button>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Interactive floating pillar tags */}

@@ -139,7 +139,7 @@ export default function AdminLayout({
             <aside className="cms-sidebar">
                 <div className="cms-sidebar-brand">
                     <Link href="/admin" aria-label={t('home')}>
-                        <img src="/brand/coe-cbsa.png" alt="CoE CBSA" className="cms-brand cms-brand-light" width={144} height={44} />
+                        <img src="/brand/coe-cbsa.webp" alt="CoE CBSA" className="cms-brand cms-brand-light" width={144} height={44} />
                     </Link>
                     <button
                         type="button"

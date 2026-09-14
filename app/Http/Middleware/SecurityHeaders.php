@@ -52,11 +52,17 @@ class SecurityHeaders
         // `php artisan serve` can run with APP_ENV=production locally too, and
         // sending HSTS from http://localhost would pin the developer's browser
         // to https://localhost for two years.
-        if (str_starts_with((string) config('app.url'), 'https://')) {
+        if ($this->secure()) {
             $headers['Strict-Transport-Security'] = 'max-age=63072000; includeSubDomains; preload';
         }
 
         return $headers;
+    }
+
+    /** Whether the canonical origin is https; gates HSTS and the upgrade directive. */
+    private function secure(): bool
+    {
+        return str_starts_with((string) config('app.url'), 'https://');
     }
 
     private function contentSecurityPolicy(string $nonce): string
@@ -75,13 +81,20 @@ class SecurityHeaders
             $styleSrc[] = $devOrigin;
         }
 
+        // `https:` rather than the media bucket alone. The CMS lets an editor
+        // paste any image URL and the seeded content points at a stock photo
+        // host, so a bucket-only policy silently breaks every one of them —
+        // which is what a Lighthouse run caught. Images cannot execute, so this
+        // is a display permission, not a script one. The storage origin stays
+        // listed for the plain-http local case.
         $storage = $this->storageOrigin();
+        $imgSrc = array_filter(["'self'", 'data:', 'blob:', 'https:', $storage]);
 
         return implode('; ', array_filter([
             "default-src 'self'",
             'script-src '.implode(' ', $scriptSrc),
             'style-src '.implode(' ', $styleSrc),
-            'img-src \'self\' data: blob:'.($storage ? " {$storage}" : ''),
+            'img-src '.implode(' ', $imgSrc),
             "font-src 'self' data:",
             // The contact page embeds a Google Maps iframe; without frame-src it
             // falls back to default-src and the map is blocked.
@@ -91,7 +104,10 @@ class SecurityHeaders
             "object-src 'none'",
             "base-uri 'self'",
             "form-action 'self'",
-            'upgrade-insecure-requests',
+            // Only meaningful on an https origin. On http it rewrites the page's
+            // own same-origin subresource requests, which is why Lighthouse
+            // could not download robots.txt here.
+            $this->secure() ? 'upgrade-insecure-requests' : null,
         ]));
     }
 
