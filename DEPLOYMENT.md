@@ -100,3 +100,45 @@ Deploys are backwards compatible unless a migration is destructive; none so far
 are. To roll back, deploy the previous revision and restart both processes.
 Roll migrations back only if the newer revision added a column the old code
 writes to — otherwise leaving the schema ahead is safe.
+
+## Measuring performance locally
+
+`php artisan serve` is a single-threaded PHP process with opcache off. It
+answers one request at a time, so every asset queues behind the document and
+the numbers it produces are a reading of the dev server, not of this
+application. Measured on the same machine, the same page: 0.7–26 s to first
+byte there against 0.19–0.61 s behind the stack below, and Lighthouse's
+server-latency audit fell from seconds to 0 ms.
+
+To measure something meaningful, put the app behind a real web server with a
+FastCGI pool and a production config cache.
+
+```bash
+# 1. Production config, cached. Set APP_ENV=production, APP_DEBUG=false and
+#    APP_URL to the port you will serve on, then:
+php artisan optimize          # config, events, routes and views
+#    Restore .env afterwards: the cached config keeps the production values.
+
+# 2. A pool of PHP workers. php-cgi.exe on Windows serves one request at a
+#    time, so run several; PHP-FPM on Linux does this itself with `pm`.
+php-cgi -b 127.0.0.1:9101 -d zend_extension=opcache -d opcache.enable=1 \
+        -d opcache.memory_consumption=256 -d opcache.validate_timestamps=0
+#    …repeated on 9102, 9103, 9104.
+
+# 3. nginx with an upstream over those ports, root at public/, and
+#    try_files $uri $uri/ /index.php?$query_string.
+
+# 4. The SSR process, as in production.
+php artisan inertia:start-ssr
+```
+
+`opcache.validate_timestamps=0` means the workers never re-read changed PHP.
+**Restart them after every deploy** — and after every edit while measuring.
+
+Two things to undo when you are done, or the next `php artisan test` run will
+fail with `askQuestion(), but no expectations were specified`: that is the
+cached production config making `migrate` ask for confirmation.
+
+```bash
+php artisan optimize:clear
+```
