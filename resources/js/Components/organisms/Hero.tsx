@@ -24,7 +24,6 @@ import type { MotionValue } from "framer-motion";
 const heroPhoto =
   "https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?w=1600&h=2000&fit=crop&auto=format";
 
-const ease = [0.22, 1, 0.36, 1] as const;
 
 // Resting positions (percentages) for the floating pillar tags over the image.
 const tagSpots = [
@@ -213,10 +212,9 @@ export function Hero() {
       </div>
 
       {/* Scroll cue */}
+      {/* No entrance animation on opacity: `fade` already owns this element's
+          opacity, and an `initial` of 0 only served to hide it in the HTML. */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
         style={{ opacity: fade }}
         className="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex"
       >
@@ -257,13 +255,18 @@ function FloatingTag({
   const ty = useTransform(sy, [-0.5, 0.5], [spot.depth * 16, spot.depth * -16]);
 
   return (
-    <motion.div
-      className="absolute"
-      style={{ top: spot.top, left: spot.left, x: tx, y: ty }}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.6, delay: 0.6 + index * 0.12, ease }}
+    // The entrance is CSS on a plain wrapper so nothing is hidden in the server
+    // HTML; the inner element keeps the pointer parallax, and the two never
+    // fight over `transform` because they are different elements.
+    <div
+      className="hero-enter absolute"
+      style={{
+        top: spot.top,
+        left: spot.left,
+        animationDelay: `${(0.6 + index * 0.12).toFixed(2)}s`,
+      }}
     >
+      <motion.div style={{ x: tx, y: ty }}>
       <motion.button
         onHoverStart={() => setHover(true)}
         onHoverEnd={() => setHover(false)}
@@ -286,7 +289,8 @@ function FloatingTag({
         >
           {note}
         </motion.span>
-      </motion.button>
-    </motion.div>
+        </motion.button>
+      </motion.div>
+    </div>
   );
 }

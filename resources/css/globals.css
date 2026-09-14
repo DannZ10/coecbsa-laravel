@@ -303,7 +303,7 @@
     text-align: start;
   }
 
-  /* Scroll reveal (components/motion/reveal.tsx). The `.reveal` class is only
+  /* Scroll reveal (Components/atoms/Reveal.tsx). The `.reveal` class is only
      added by script after mount, so content is never hidden without JS. */
   .reveal {
     opacity: 0;

@@ -109,7 +109,7 @@ export function Programs({ items: apiItems }: { items?: ProgramContent[] }) {
           {/* Media panel — RIGHT */}
           <div className="order-1 lg:order-2 lg:col-span-7">
             <div className="relative aspect-[16/11] overflow-hidden rounded-2xl bg-muted shadow-xl">
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={active}
                   initial={{ opacity: 0, scale: 1.06 }}
@@ -140,7 +140,7 @@ export function Programs({ items: apiItems }: { items?: ProgramContent[] }) {
                 </span>
               </div>
 
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={active}
                   initial={{ opacity: 0, y: 12 }}

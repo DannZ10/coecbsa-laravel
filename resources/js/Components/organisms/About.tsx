@@ -68,12 +68,15 @@ function DocDiamond({ d, progress, index }: { d: Doc; progress: MotionValue<numb
   const y = useTransform(progress, [0, 1], [0, d.speed]);
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.85 }}
-      whileInView={{ opacity: d.opacity, scale: 1 }}
+      // Opacity is a static style, not an animated value. Animating it from 0
+      // would ship `style="opacity:0"` in the server HTML, hiding the tile
+      // until hydration finishes — and for good if the bundle never arrives.
+      initial={{ scale: 0.85 }}
+      whileInView={{ scale: 1 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.9, delay: index * 0.08, ease }}
       className="absolute"
-      style={{ top: d.top, left: d.left, width: d.size, height: d.size, y }}
+      style={{ top: d.top, left: d.left, width: d.size, height: d.size, opacity: d.opacity, y }}
     >
       {/* Diamond frame with counter-rotated image so the photo stays upright */}
       <div

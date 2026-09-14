@@ -28,7 +28,7 @@ export function FocusAreas() {
           <div className="order-2 lg:order-1 lg:col-span-5">
             <div className="lg:sticky lg:top-24">
               <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-border bg-muted">
-                <AnimatePresence mode="wait">
+                <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={active}
                     initial={{ opacity: 0, scale: 1.05 }}

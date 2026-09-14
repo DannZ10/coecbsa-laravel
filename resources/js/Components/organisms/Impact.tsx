@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Reveal } from '@/Components/atoms/Reveal';
 import { Kicker } from '@/Components/atoms/Kicker';
 import { StatCounter } from '@/Components/molecules/StatCounter';
@@ -9,7 +8,6 @@ import { impact } from '@/data/content';
 import type { ImpactContent } from '@/types/api';
 import { impactFromApi, localized } from '@/lib/content-adapters';
 
-const ease = [0.22, 1, 0.36, 1] as const;
 
 /** Summary section — background photo overlaid with a dark→light green wash. */
 export function Impact({ content }: { content?: ImpactContent }) {
@@ -64,20 +62,14 @@ export function Impact({ content }: { content?: ImpactContent }) {
         {/* Compact stat row */}
         <div className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-4">
           {view.stats.map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease }}
-            >
+            <Reveal key={i} delay={i * 0.08}>
               <div className="font-display text-4xl font-extrabold tracking-tight text-paper sm:text-5xl">
                 <StatCounter value={s.value} />
               </div>
               <p className="mx-auto mt-2 max-w-[9rem] text-xs leading-snug text-paper/70">
                 {t(s.label)}
               </p>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 
