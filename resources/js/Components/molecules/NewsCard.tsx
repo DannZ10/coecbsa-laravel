@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/Components/atoms/Button';
 import { Link } from '@/Components/atoms/RouteLink';
-import { ImageWithFallback } from '@/Components/atoms/ImageWithFallback';
+import { Picture } from '@/Components/atoms/Picture';
 import { formatDate } from '@/lib/utils';
 import { pickLocale, type Article } from '@/types/api';
 
@@ -25,10 +25,12 @@ export function NewsCard({ article, locale, index = 0 }: Props) {
       className="group flex flex-col"
     >
       <Link to={to} aria-label={title} className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-muted">
-        <ImageWithFallback
+        <Picture
           src={article.coverImage || ''}
           alt={title}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          fill
+          sizes="(min-width: 1024px) 33vw, 100vw"
+          className="transition-transform duration-700 group-hover:scale-105"
         />
       </Link>
       <div className="mt-4 flex flex-wrap items-center gap-3 text-[0.66rem] font-medium uppercase tracking-wider">

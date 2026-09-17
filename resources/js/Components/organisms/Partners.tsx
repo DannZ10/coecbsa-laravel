@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from 'react';
 import { useAnimationFrame, useReducedMotion } from 'framer-motion';
 import { SectionHeading } from '@/Components/molecules/SectionHeading';
 import { Logo } from '@/Components/atoms/Logo';
+import { Picture } from '@/Components/atoms/Picture';
 import { useI18n } from '@/lib/i18n';
 import { partners as staticPartners } from '@/data/content';
 import type { PartnerContent } from '@/types/api';
@@ -312,7 +313,7 @@ function OrbitNode({
     >
       <span className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-border bg-card font-display text-xs font-bold text-forest-800 shadow-md transition-[border-color,transform] duration-300 group-hover:scale-110 group-hover:border-amber">
         {node.logoUrl ? (
-          <img src={node.logoUrl} alt="" className="h-full w-full object-contain p-2" loading="lazy" />
+          <Picture src={node.logoUrl} alt="" sizes="64px" className="h-full w-full object-contain p-2" />
         ) : (
           // Hidden by the frame loop once this node is at the far side. At 16%
           // opacity the letters are unreadable anyway, and text nobody can read
@@ -361,11 +362,11 @@ function MobilePartnerNode({ node }: { node: PartnerNode }) {
     >
       <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl bg-forest-800 font-display text-xs font-bold text-paper">
         {node.logoUrl ? (
-          <img
+          <Picture
             src={node.logoUrl}
             alt=""
+            sizes="48px"
             className="h-full w-full bg-paper object-contain p-1.5"
-            loading="lazy"
           />
         ) : (
           monogram(node.name)

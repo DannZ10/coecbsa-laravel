@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, type MotionValue } from "framer-motion
 import { Reveal } from "@/Components/atoms/Reveal";
 import { Kicker } from "@/Components/atoms/Kicker";
 import { Button } from "@/Components/atoms/Button";
-import { ImageWithFallback } from "@/Components/atoms/ImageWithFallback";
+import { Picture } from "@/Components/atoms/Picture";
 import { useI18n } from "@/lib/i18n";
 import { about } from "@/data/content";
 
@@ -84,7 +84,9 @@ function DocDiamond({ d, progress, index }: { d: Doc; progress: MotionValue<numb
         style={{ transform: "rotate(45deg)", filter: `blur(${d.blur}px)` }}
       >
         <div className="h-full w-full" style={{ transform: "rotate(-45deg) scale(1.5)" }}>
-          <ImageWithFallback src={d.src} alt="" className="h-full w-full object-cover" />
+          {/* Non-fill: the diamond crop lives in rotated/scaled wrappers, so the
+              image must stay in flow with object-cover, not absolutely filled. */}
+          <Picture src={d.src} alt="" className="h-full w-full object-cover" sizes="240px" />
         </div>
       </div>
     </motion.div>

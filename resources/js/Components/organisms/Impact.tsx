@@ -2,7 +2,7 @@ import { Reveal } from '@/Components/atoms/Reveal';
 import { Kicker } from '@/Components/atoms/Kicker';
 import { StatCounter } from '@/Components/molecules/StatCounter';
 import { Button } from '@/Components/atoms/Button';
-import { ImageWithFallback } from '@/Components/atoms/ImageWithFallback';
+import { Picture } from '@/Components/atoms/Picture';
 import { useI18n } from '@/lib/i18n';
 import { impact } from '@/data/content';
 import type { ImpactContent } from '@/types/api';
@@ -26,10 +26,12 @@ export function Impact({ content }: { content?: ImpactContent }) {
   return (
     <section id="impact" className="relative isolate overflow-hidden py-24 text-paper sm:py-32">
       {/* Background image */}
-      <ImageWithFallback
+      <Picture
         src={view.feature.image}
         alt=""
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
+        fill
+        sizes="100vw"
+        className="-z-20"
       />
       {/* Dark green → lighter green gradient overlay */}
       <div

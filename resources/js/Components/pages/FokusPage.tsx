@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { PageHeader } from "@/Components/molecules/PageHeader";
-import { ImageWithFallback } from "@/Components/atoms/ImageWithFallback";
+import { Picture } from "@/Components/atoms/Picture";
 import { useI18n } from "@/lib/i18n";
 import { focus } from "@/data/content";
 
@@ -41,9 +41,10 @@ export function FokusPage() {
               }`}
             >
               <div className="overflow-hidden rounded-2xl bg-muted">
-                <ImageWithFallback
+                <Picture
                   src={images[i]!}
                   alt={t(item.title)}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="aspect-[16/10] w-full object-cover"
                 />
               </div>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SectionHeading } from '@/Components/molecules/SectionHeading';
 import { Button } from '@/Components/atoms/Button';
-import { ImageWithFallback } from '@/Components/atoms/ImageWithFallback';
+import { Picture } from '@/Components/atoms/Picture';
 import { useI18n } from '@/lib/i18n';
 import { programs } from '@/data/content';
 import type { ProgramContent } from '@/types/api';
@@ -118,10 +118,11 @@ export function Programs({ items: apiItems }: { items?: ProgramContent[] }) {
                   transition={{ duration: 0.6, ease }}
                   className="absolute inset-0"
                 >
-                  <ImageWithFallback
+                  <Picture
                     src={item.image}
                     alt={t(item.title)}
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="(min-width: 1024px) 58vw, 100vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-900/90 via-forest-900/25 to-transparent" />
                 </motion.div>

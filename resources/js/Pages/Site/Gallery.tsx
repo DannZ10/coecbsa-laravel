@@ -1,7 +1,7 @@
 import { Images } from 'lucide-react';
 import * as React from 'react';
 import SiteLayout from '@/Layouts/SiteLayout';
-import { ImageWithFallback } from '@/Components/atoms/ImageWithFallback';
+import { Picture } from '@/Components/atoms/Picture';
 import { Kicker } from '@/Components/atoms/Kicker';
 import { PageHeader } from '@/Components/molecules/PageHeader';
 import { Reveal } from '@/Components/atoms/Reveal';
@@ -90,9 +90,10 @@ export default function Gallery({
                                 <Reveal key={item.id} delay={Math.min(index, 5) * 0.06}>
                                     <li className="group overflow-hidden rounded-2xl border border-border bg-paper-2">
                                         <div className="aspect-[4/3] overflow-hidden">
-                                            <ImageWithFallback
+                                            <Picture
                                                 src={item.image_url}
                                                 alt={item.title}
+                                                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                                                 className="h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.04]"
                                             />
                                         </div>

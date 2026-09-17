@@ -1,5 +1,5 @@
 import { PageHeader } from '@/Components/molecules/PageHeader';
-import { ImageWithFallback } from '@/Components/atoms/ImageWithFallback';
+import { Picture } from '@/Components/atoms/Picture';
 import { Kicker } from '@/Components/atoms/Kicker';
 import { useI18n } from '@/lib/i18n';
 import { about, people, type Person } from '@/data/content';
@@ -67,11 +67,11 @@ function OrganisationCard({ person, featured = false }: { person: Person; featur
       </div>
       <div className="grid grid-cols-[6.5rem_1fr] gap-4 p-4 sm:grid-cols-[8rem_1fr] sm:gap-5 sm:p-5">
         <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-forest-900">
-          <ImageWithFallback
+          <Picture
             src={person.photo ?? about.approaches[0]!.image}
             alt={t({ id: `Foto ${person.name}`, en: `${person.name} portrait` })}
+            sizes="128px"
             className="h-full w-full object-cover"
-            loading="lazy"
           />
           <span className="absolute bottom-2 left-2 rounded-full bg-forest-900/75 px-2 py-1 text-[0.48rem] font-semibold uppercase tracking-widest text-paper backdrop-blur">
             {t({ id: 'Foto', en: 'Portrait' })}

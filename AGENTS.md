@@ -53,3 +53,17 @@ hero, the navbar and every card.
 Forcing `@tiptap` into a named chunk made it a dependency of the entry, so the
 CMS editor was preloaded on the public home page. Rollup's own splitting is
 correct here because Inertia imports pages lazily.
+
+## Responsive images go through `<Picture>`
+
+`resources/js/lib/images.ts` (`unsplashSrcSet`) turns an `images.unsplash.com`
+URL into a width `srcSet`. The CDN honours `w`/`h`/`q` and `auto=format`, so one
+ladder serves every DPR as AVIF/WebP without pre-generating files. `<Picture>`
+(atoms) emits that srcSet and a `sizes` — this is why the hero no longer ships a
+1600×2000 original as the LCP. Uploaded media has one stored WebP, so `Picture`
+deliberately emits no srcSet for non-Unsplash sources; do not "fix" that.
+
+When adding a public photo, use `<Picture>` and pass `sizes` unless it renders at
+~100vw. Tune the ladder and default quality in `lib/images.ts`; `Picture`'s
+`quality` prop overrides per image. `ImageWithFallback` remains for reference art
+and logos that must keep their native file.

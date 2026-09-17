@@ -1,6 +1,7 @@
 import { PageHeader } from "@/Components/molecules/PageHeader";
 import { Reveal } from "@/Components/atoms/Reveal";
 import { Kicker } from "@/Components/atoms/Kicker";
+import { Picture } from "@/Components/atoms/Picture";
 import { useI18n } from "@/lib/i18n";
 import { mission, pillars, about } from "@/data/content";
 
@@ -55,9 +56,10 @@ export function TentangPage() {
             {about.approaches.map((a, i) => (
               <Reveal key={i} delay={i * 0.08} className="group overflow-hidden rounded-2xl border border-border bg-card">
                 <div className="aspect-[4/3] overflow-hidden bg-muted">
-                  <img
+                  <Picture
                     src={a.image}
                     alt={t(a.label)}
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>

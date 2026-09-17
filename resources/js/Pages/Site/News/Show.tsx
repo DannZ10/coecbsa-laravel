@@ -2,7 +2,7 @@ import { ArrowLeft } from 'lucide-react';
 import SiteLayout from '@/Layouts/SiteLayout';
 import { Link } from '@/Components/atoms/RouteLink';
 import { Kicker } from '@/Components/atoms/Kicker';
-import { ImageWithFallback } from '@/Components/atoms/ImageWithFallback';
+import { Picture } from '@/Components/atoms/Picture';
 import { Reveal } from '@/Components/atoms/Reveal';
 import { useLocale, useTranslations } from '@/lib/i18n';
 import { formatDate } from '@/lib/utils';
@@ -38,10 +38,12 @@ export default function NewsShow({ article, related }: { article: Article; relat
             <article className="border-b border-border bg-paper">
                 {article.cover_image && (
                     <div className="relative h-[38vh] min-h-[16rem] w-full overflow-hidden sm:h-[52vh]">
-                        <ImageWithFallback
+                        <Picture
                             src={article.cover_image}
                             alt=""
-                            className="h-full w-full object-cover"
+                            fill
+                            priority
+                            sizes="100vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-forest-900/70 via-forest-900/10 to-transparent" aria-hidden />
                     </div>
@@ -112,9 +114,10 @@ export default function NewsShow({ article, related }: { article: Article; relat
                                         <Link to={`/berita/${item.slug}`} className="block">
                                             <div className="aspect-[3/2] overflow-hidden bg-paper-2">
                                                 {item.cover_image && (
-                                                    <ImageWithFallback
+                                                    <Picture
                                                         src={item.cover_image}
                                                         alt=""
+                                                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                                                         className="h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.03]"
                                                     />
                                                 )}

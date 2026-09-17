@@ -16,7 +16,7 @@ const ThreeField = lazy(() =>
 );
 import { Button } from "@/Components/atoms/Button";
 import { Kicker } from "@/Components/atoms/Kicker";
-import { ImageWithFallback } from "@/Components/atoms/ImageWithFallback";
+import { Picture } from "@/Components/atoms/Picture";
 import { useI18n } from "@/lib/i18n";
 import { hero, pillars } from "@/data/content";
 import type { MotionValue } from "framer-motion";
@@ -114,10 +114,15 @@ export function Hero() {
         style={{ y: bgOffsetY, x: imgX }}
         className="absolute -inset-[18%] scale-110 will-change-transform"
       >
-        <ImageWithFallback
+        {/* LCP: eager + high priority, and a ladder capped at the source width
+            so mobile fetches ~viewport-sized art, not the full 1600×2000. The
+            wrapper is scaled ~150% of the viewport, hence sizes. */}
+        <Picture
           src={heroPhoto}
           alt="Komunitas dan lahan agroindustri berkelanjutan"
-          className="h-full w-full object-cover"
+          fill
+          priority
+          sizes="150vw"
         />
       </motion.div>
 

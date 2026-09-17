@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeading } from "@/Components/molecules/SectionHeading";
-import { ImageWithFallback } from "@/Components/atoms/ImageWithFallback";
+import { Picture } from "@/Components/atoms/Picture";
 import { useI18n } from "@/lib/i18n";
 import { focus } from "@/data/content";
 
@@ -37,10 +37,11 @@ export function FocusAreas() {
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute inset-0"
                   >
-                    <ImageWithFallback
+                    <Picture
                       src={images[active]!}
                       alt={t(activeItem.title)}
-                      className="h-full w-full object-cover"
+                      fill
+                      sizes="(min-width: 1024px) 40vw, 100vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-forest-900/50 to-transparent" />
                   </motion.div>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { PageHeader } from '@/Components/molecules/PageHeader';
-import { ImageWithFallback } from '@/Components/atoms/ImageWithFallback';
+import { Picture } from '@/Components/atoms/Picture';
 import { useI18n } from '@/lib/i18n';
 import { programs, bsfDetail, type Program } from '@/data/content';
 import type { ProgramContent } from '@/types/api';
@@ -77,10 +77,11 @@ function ProgramRow({
       <div
         className={`relative min-h-[18rem] overflow-hidden rounded-2xl bg-muted lg:min-h-[32rem] ${index % 2 === 1 ? 'lg:order-2' : ''}`}
       >
-        <ImageWithFallback
+        <Picture
           src={program.image}
           alt={t(program.title)}
-          className="absolute inset-0 h-full w-full object-cover"
+          fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
         />
         <span
           className={`absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[0.66rem] font-semibold uppercase tracking-wider backdrop-blur ${statusStyles[program.status]}`}
